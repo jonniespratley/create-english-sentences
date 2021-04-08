@@ -1,2 +1,3 @@
-# create-english-sentences
-Created with CodeSandbox
+# learn-english
+
+This app is aimed to help people learn English by forming sentances.
