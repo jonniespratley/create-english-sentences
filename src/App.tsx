@@ -10,6 +10,45 @@ import {
 import { AppHeader, InputData, InputForm } from "./components";
 import { ApiService } from "./services";
 import { title, body } from "./data";
+
+function SentenceList(props) {
+  const saySentence = (item) => {
+    const { sentence } = item;
+    try {
+      const synth = window.speechSynthesis;
+      const speech = new SpeechSynthesisUtterance(sentence);
+      synth.speak(speech);
+    } catch (err) {
+      console.error("saySentence", err);
+    }
+  };
+
+  return (
+    <List>
+      {props.items &&
+        props.items
+          .sort((a, b) => parseInt(b.id) - parseInt(a.id))
+          .map((item) => (
+            <ListItem
+              button
+              key={item.id}
+              divider
+              onClick={() => {
+                saySentence(item);
+              }}
+            >
+              <ListItemText
+                primary={item.sentence}
+                primaryTypographyProps={{
+                  variant: "h5",
+                }}
+              />
+            </ListItem>
+          ))}
+    </List>
+  );
+}
+
 /**
  * App Component handles rendering the InputForm and handling add item to
  * list of sentences to be created.
@@ -24,6 +63,7 @@ export const App = () => {
     setItems(items.concat(item));
   };
 
+
   return (
     <Box>
       <AppHeader />
@@ -34,21 +74,7 @@ export const App = () => {
         </Box>
         <InputForm onSubmit={handleSubmit} />
         <Box mt={4}>
-          <List>
-            {items &&
-              items
-                .sort((a, b) => parseInt(b.id) - parseInt(a.id))
-                .map((item: any) => (
-                  <ListItem button key={item.id}>
-                    <ListItemText
-                      primary={item.sentence}
-                      primaryTypographyProps={{
-                        variant: "h5",
-                      }}
-                    />
-                  </ListItem>
-                ))}
-          </List>
+          <SentenceList items={items}/>
         </Box>
       </Container>
     </Box>

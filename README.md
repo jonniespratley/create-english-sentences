@@ -61,39 +61,33 @@ A complex sentence can be broken down into one clause with a relative clause.
 
 > Complex sentence has *one* clause with a *relative* clause
 
---- 
+
 ## Application Design
 
-The following outlines the design of the application that was created. In trying to keep the UI as simple was possible my first thought was to make it as elementry as possible. If there was more time and more detailed design requirements the application could been styled to resemble a "School Assignment" or "Childlike" look and feel to make it more approachable.
+The application was broken down into the following layers.
 
-## Components
-
-The following components were created as a way to follow the seperation of concerns.
-
-The components logic is broken down into the following:
+### User Interface Layer
 
 1. `InputForm` - This is a simple form for users to input a subject, noun, and tense.
 2. `SentenceOuput` - This is a simple component that uses Hooks to handle fetching the complete sentence from the API and rendering it to the display.
-3. `ApiService` - This is a simple service class that handles making a API request then caching, then returns the results.
 
+### Data Access Layer
+
+1. `ApiService` - This is a simple service class that handles making a API request then caching, then returns the results.
 
 ## User Input
 
-The following is an image of the sentence creation form.
+The user is presented with a form to input or select a option that corresponds to the part of the sentence. 
 
-For assisting users in completing the form I gathered data from around the internet about the most commonly used of the following:
-
-- nouns
-- verbs
-- objects
-
-This data is populates the auto-complete inputs in the UI.
+In this case a simple sentence is captured.
 
 ![Input Form](public/images/form.png)
 
 
-
 ## Conclusion
 
-This objective was can be very challenging when you think about the design aspect of it. In a sense the application should feel very approachable and even like an elementry school course online. When you start breaking down the different parts of a sentence and thinking about it in terms of a user entering data my initial thought was to use icons and visually allow a user to construct a sentence.
+This objective was can be very challenging when you think about the design aspect of it.
 
+When you start breaking down the different parts of a sentence and thinking about it in terms of a user entering data my initial thought was to use icons and visually allow a user to construct a sentence.
+
+If there was more time and more detailed design requirements the application could been styled to resemble a "School Assignment" or "Childlike" look and feel to make it more approachable.

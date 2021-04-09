@@ -26,6 +26,7 @@ export interface InputData {
   verb?: string;
   noun?: string;
   object?: string;
+  sentence?: string;
   tense?: string;
 }
 
