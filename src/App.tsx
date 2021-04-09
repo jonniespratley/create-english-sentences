@@ -5,27 +5,27 @@ import {
   List,
   ListItem,
   ListItemText,
-  Typography,
-} from "@material-ui/core"; 
+  Typography
+} from "@material-ui/core";
 import { AppHeader, InputData, InputForm, OutputForm } from "./components";
 import { ApiService } from "./services";
 
 /**
- * App Component handles rendering the InputForm and handling add item to 
+ * App Component handles rendering the InputForm and handling add item to
  * list of sentences to be created.
- * @returns 
+ * @returns
  */
 export const App = () => {
   const [items, setItems] = React.useState<InputData[]>([]);
-  
+
   const handleSubmit = async (data) => {
-    const {sentence} = await ApiService.getSentence(data);
-    const item = {...data, sentence};
+    const { sentence } = await ApiService.getSentence(data);
+    const item = { ...data, sentence };
     setItems(items.concat(item));
   };
 
   return (
-    <div className="App">
+    <Box>
       <AppHeader />
       <Container>
         <Box my={4}>
@@ -37,23 +37,20 @@ export const App = () => {
           <List>
             {items &&
               items
-                .sort((a, b) => {
-                  return parseInt(b.id) - parseInt(a.id);
-                })
+                .sort((a, b) => parseInt(b.id) - parseInt(a.id))
                 .map((item: any) => (
                   <ListItem button key={item.id}>
                     <ListItemText
                       primary={item.sentence}
                       primaryTypographyProps={{
-                        variant: "h5",
+                        variant: "h5"
                       }}
-                      
                     />
                   </ListItem>
                 ))}
           </List>
         </Box>
       </Container>
-    </div>
+    </Box>
   );
 };
