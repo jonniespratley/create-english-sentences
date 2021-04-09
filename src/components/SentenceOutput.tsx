@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 
 import { ApiService } from '../services';
-import { InputData } from './InputForm';
+import { InputData } from '../Props';
 
 interface SentenceOutputProps {
     params: InputData;
