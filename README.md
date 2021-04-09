@@ -48,13 +48,11 @@ The following diagram shows how a *compound* sentence is constructed:
 
 A complex sentence can be broken down into one clause with a relative clause.
 
-
 > Complex sentence has *one* clause with a *relative* clause
-
 
 ## Application Design
 
-The following outlines the design of the application that was created. In trying to keep the UI as simple was possible my first thought was to make it as elementry as possible. If there was more time and more detailed design requirements the application could been styled to resemble a "School Assignment" or "Worksheet" type of feel.
+The following outlines the design of the application that was created. In trying to keep the UI as simple was possible my first thought was to make it as elementry as possible. If there was more time and more detailed design requirements the application could been styled to resemble a "School Assignment" or "Childlike" look and feel to make it more approachable.
 
 ## Components
 
@@ -66,3 +64,6 @@ The components logic is broken down into the following:
 2. `OutputForm` - This is a simple component that uses Hooks to handle fetching the complete sentence from the backend and rendering it to the display.
 3. `ApiService` - This is a simple service class that handles making a API request then caching, then returns the results.
 
+### Data
+
+For assisting users in completing the form I gathered data from around the internet about the most commonly used nouns and verbs. This data is loaded and populates the autocomplete inputs in the UI.

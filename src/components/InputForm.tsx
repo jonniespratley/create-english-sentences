@@ -8,27 +8,26 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import {Autocomplete} from '@material-ui/lab'
+import { Autocomplete } from "@material-ui/lab";
 
-import {actionVerbs} from './sentenceData';
+import { actionVerbs } from "./sentenceData";
 
-import verbsData from '../data/verbs.json';
-import nounsData from '../data/nouns.json';
-
+import verbsData from "../data/verbs.json";
+import nounsData from "../data/nouns.json";
 
 function getNouns() {
-  const {nouns} = nounsData;
+  const { nouns } = nounsData;
   return nouns;
 }
 function getVerbs() {
-  const {verbs} = verbsData;
-  return verbs.map(v => v.present);
+  const { verbs } = verbsData;
+  return verbs.map((v) => v.present);
 }
 
 const sentenceTypes = [
-  { label: "Simple", value: "1" },
-  { label: "Compound", value: "2" },
-  { label: "Complex", value: "3" },
+  { label: "Yes / No", value: "yesno" },
+  { label: "What object?", value: "whatobj" },
+  { label: "Who subject?", value: "whosubj" },
 ];
 
 const tenses = [
@@ -40,16 +39,19 @@ const tenses = [
 const formLabels = {
   noun: {
     label: "Give a subject",
-    help: "A noun. (👶🏻, 👮🏽‍♀️, 👩, 🏖,)",
+    help: "A noun. (👶🏻, 👮🏽‍♀️, 👩, 🏖)",
   },
   verb: {
-    label: "Give a verb",
-    help:
-      "An action, state. (🏊🏼‍♂️ 🚣🏽 🚴🏽‍♀️ 🚗  🚀)",
+    label: "Give an action",
+    help: "A verb. (🏊🏼‍♂️, 🚣🏽, 🚴🏽‍♀️, 🚀)",
   },
   tense: {
     label: "Give a tense",
-    help: "A thing that occurred at a specific time. (past, present, future) 🌝 🌤 🌑",
+    help: "A specific time.",
+  },
+  object: {
+    label: "Give a object",
+    help: "A thing. (Ball, Car, Building)",
   },
 };
 
@@ -66,91 +68,87 @@ interface InputFormProps {
   data?: InputData;
 }
 
-export const InputForm: React.FC<InputFormProps> = ({
-  onSubmit
-}) => {
+export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
+  const [subject, setSubject] = React.useState(null);
+  const [tense, setTense] = React.useState("");
+  const [noun, setNoun] = React.useState("");
+  const [verb, setVerb] = React.useState("");
+  const [object, setObject] = React.useState("");
 
-  const [subject, setSubject] = React.useState(null)
-  const [tense, setTense] = React.useState('');
-  const [noun, setNoun] = React.useState('');
-  const [verb, setVerb] = React.useState('');
-
-  let formData:InputData;
+  let formData: InputData;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    formData = { verb, tense, ...{subject: noun} }
-    
-    if(onSubmit){
+
+    formData = { verb, tense, ...{ subject: noun } };
+
+    if (onSubmit) {
       onSubmit(formData);
     }
-  }
+  };
 
-    const smSize = 3;
+  const smSize = 3;
   return (
     <Box my={2} p={2}>
-      <Typography variant="h3">Learn English Sentences</Typography>
-      <p>Use the form below to construct a new sentance.</p>
+      <Typography variant="h4">English Sentences</Typography>
+      <p>Use the form below to construct a sentence.</p>
       <br />
-      <form
-        onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <Grid container spacing={4}>
-        <Grid item sm={smSize} xs>
+          <Grid item xs={12}>
             <TextField
               id="input1"
               label="Sentence type"
               variant="outlined"
               fullWidth
               select
-              
             >
-               {sentenceTypes.map((t) => (
+              {sentenceTypes.map((t) => (
                 <MenuItem key={t.value} value={t.value}>
                   {t.label}
                 </MenuItem>
               ))}
-
             </TextField>
-
           </Grid>
-          <Grid item sm={smSize}>
+          <Grid item sm={smSize} xs={12}>
             <Autocomplete
               id="noun"
-              freeSolo   
+              freeSolo
               value={noun}
               onInputChange={(e, val) => setNoun(val)}
               options={getNouns()}
               getOptionLabel={(option) => option}
               fullWidth
-              renderInput={(params) =>  <TextField
-                label={formLabels.noun.label}
-                helperText={formLabels.noun.help}
-                variant="outlined"
-                {...params}
-              />}
+              renderInput={(params) => (
+                <TextField
+                  label={formLabels.noun.label}
+                  helperText={formLabels.noun.help}
+                  variant="outlined"
+                  {...params}
+                />
+              )}
             />
           </Grid>
-          <Grid item sm={smSize}>
-          <Autocomplete
-              id="verb" 
+          <Grid item sm={smSize} xs={12}>
+            <Autocomplete
+              id="verb"
               freeSolo
               value={verb}
               options={getVerbs()}
               getOptionLabel={(option) => option}
               onInputChange={(e, val) => setVerb(val)}
               fullWidth
-              renderInput={(params) =>  <TextField
-                label={formLabels.verb.label}
-                helperText={formLabels.verb.help}
-                variant="outlined"
-                {...params}
-              />}
+              renderInput={(params) => (
+                <TextField
+                  label={formLabels.verb.label}
+                  helperText={formLabels.verb.help}
+                  variant="outlined"
+                  {...params}
+                />
+              )}
             />
-    
           </Grid>
-          <Grid item sm={smSize} xs>
+          <Grid item sm={smSize} xs={12}>
             <TextField
               id="tense"
               value={tense}
@@ -158,8 +156,6 @@ export const InputForm: React.FC<InputFormProps> = ({
               onChange={(e) => setTense(e.target.value)}
               label={formLabels.tense.label}
               helperText={formLabels.tense.help}
-              InputLabelProps={{ shrink: true }}
-              
               select
               fullWidth
               variant="outlined"
@@ -171,7 +167,20 @@ export const InputForm: React.FC<InputFormProps> = ({
               ))}
             </TextField>
           </Grid>
-          <Grid item>
+
+          <Grid item sm={smSize} xs={12}>
+            <TextField
+              id="object"
+              label={formLabels.object.label}
+              helperText={formLabels.object.help}
+              value={object}
+              fullWidth
+              variant="outlined"
+              onChange={(e) => setObject(e.target.value)}
+            />
+          </Grid>
+
+          <Grid item xs={12}>
             <Button variant="outlined" type="submit">
               {" "}
               Generate Sentence
