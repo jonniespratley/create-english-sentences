@@ -10,62 +10,14 @@ import {
 } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 
-import { actionVerbs } from "./sentenceData";
-
-import verbsData from "../data/verbs.json";
-import nounsData from "../data/nouns.json";
-
-function getNouns() {
-  const { nouns } = nounsData;
-  return nouns;
-}
-
-function getVerbs() {
-  const { verbs } = verbsData;
-  return verbs.map((v) => v.present);
-}
-
-function getObjects() {
-  return ["Bear", "TV", "Toolbox", "Bed"].sort();
-}
-
-const sentenceTypes = [
-  { label: "Yes / No", value: "yesno" },
-  { label: "What object?", value: "whatobj" },
-  { label: "Who subject?", value: "whosubj" },
-];
-
-const tenses = [
-  { label: "Past", value: "past" },
-  { label: "Present", value: "present" },
-  { label: "Future", value: "future" },
-];
-
-const formLabels = {
-  type: {
-    label: "Type of sentence",
-    help: "The type of sentence structure",
-  },
-  noun: {
-    label: "Give a subject",
-    help: "A noun. (👶🏻, 👮🏽‍♀️, 👩, 🏖)",
-  },
-  verb: {
-    label: "Give an action",
-    help: "A verb. (🏊🏼‍♂️, 🚣🏽, 🚴🏽‍♀️, 🚀)",
-  },
-  tense: {
-    label: "Give a tense",
-    help: "A time. (⏱, 🕰) ",
-  },
-  object: {
-    label: "Give a object",
-    help: "A thing. (🧸, 📺, 🧰, 🛏)",
-  },
-  submit: {
-    label: 'Create'
-  }
-};
+import {
+  formLabels,
+  getNouns,
+  getObjects,
+  getVerbs,
+  sentenceTypes,
+  tenses,
+} from "../data";
 
 export interface InputData {
   id: string;
@@ -173,7 +125,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
 
         {/* Sentence Object */}
         <Grid item sm={smSize} xs={12}>
-        <Autocomplete
+          <Autocomplete
             id="object"
             freeSolo
             value={object}
@@ -190,7 +142,6 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
               />
             )}
           />
-         
         </Grid>
         {/* Sentence Tense */}
         <Grid item sm={smSize} xs={12}>

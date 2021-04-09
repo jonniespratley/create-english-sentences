@@ -5,11 +5,11 @@ import {
   List,
   ListItem,
   ListItemText,
-  Typography
+  Typography,
 } from "@material-ui/core";
-import { AppHeader, InputData, InputForm, OutputForm } from "./components";
+import { AppHeader, InputData, InputForm } from "./components";
 import { ApiService } from "./services";
-
+import { title, body } from "./data";
 /**
  * App Component handles rendering the InputForm and handling add item to
  * list of sentences to be created.
@@ -29,8 +29,8 @@ export const App = () => {
       <AppHeader />
       <Container>
         <Box my={4}>
-          <Typography variant="h4">Create a Sentence</Typography>
-          <p>Use the form below to construct a sentence.</p>
+          <Typography variant="h4">{title}</Typography>
+          <p>{body}</p>
         </Box>
         <InputForm onSubmit={handleSubmit} />
         <Box mt={4}>
@@ -43,7 +43,7 @@ export const App = () => {
                     <ListItemText
                       primary={item.sentence}
                       primaryTypographyProps={{
-                        variant: "h5"
+                        variant: "h5",
                       }}
                     />
                   </ListItem>
