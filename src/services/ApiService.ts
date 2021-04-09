@@ -14,7 +14,7 @@ export class ApiService {
   /**
    * Handle making a request to the api service and caching the result.
    */
-  static async request(url, opts) {
+  static async request(url:string, opts:any) {
     const key = JSON.stringify(url);
     if (cache.has(key)) {
       return cache.get(key);

@@ -16,7 +16,7 @@ describe("ApiService", () => {
   });
   describe("getSentence", () => {
     it("should resolve on sucess", async () => {
-      let resp = await ApiService.getSentence({
+      const resp = await ApiService.getSentence({
         subject: "officer",
         verb: "ran",
         object: "gun",

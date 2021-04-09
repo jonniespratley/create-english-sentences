@@ -1,6 +1,6 @@
-# create-enlish-sentences
+# create-english-sentences
 
-This app is aimed to help people learn English by forming sentances.
+This app is to help people learn English by forming proper sentences.
 
 You can view of this application running [here](https://jonniespratley.github.io/create-english-sentences/)
 
@@ -17,7 +17,7 @@ $ yarn start
 
 ## Requirements
 
-Simple web application that allows users learning English to form proper sentences.
+Create a simple web application that allows users learning English to form proper sentences.
 
  - [x] Use Linguatools free testing API to generate sentences
 
@@ -109,8 +109,8 @@ Below the form is the list of sentences that were generated, if you press on a i
 
 ## Conclusion
 
-This objective was can be very challenging when you think about the design aspect of it.
+The objective was challenging when you think about the design aspect.
 
-When you start breaking down the different parts of a sentence and thinking about it in terms of a user entering data my initial thought was to use icons and visually allow a user to construct a sentence.
+When you start breaking down the different parts of a sentence and a user entering data, my initial thought was to keep it extremely basic.
 
 If there was more time and more detailed design requirements the application could been styled to resemble a "School Assignment" or "Childlike" look and feel to make it more approachable.

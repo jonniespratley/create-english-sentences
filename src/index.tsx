@@ -1,16 +1,16 @@
-import { ThemeProvider, CssBaseline } from "@material-ui/core";
-import { render } from "react-dom";
+import { ThemeProvider, CssBaseline } from '@material-ui/core';
+import { render } from 'react-dom';
 
-import { App } from "./App";
-import { darkTheme } from "./Theme";
+import { App } from './App';
+import { darkTheme } from './Theme';
 
 function AppRoot() {
-  return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider theme={darkTheme}>
+            <CssBaseline />
+            <App />
+        </ThemeProvider>
+    );
 }
 
-render(<AppRoot />, document.getElementById("root"));
+render(<AppRoot />, document.getElementById('root'));
