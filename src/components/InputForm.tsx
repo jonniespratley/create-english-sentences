@@ -5,7 +5,7 @@ import { Autocomplete } from '@material-ui/lab';
 import { formLabels, getNouns, getObjects, getVerbs, sentenceTypes, tenses } from '../data';
 import { InputData } from '../Props';
 
-export interface InputFormProps {
+interface InputFormProps {
     onSubmit?: (data: InputData) => void;
 }
 

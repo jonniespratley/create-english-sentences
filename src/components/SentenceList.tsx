@@ -1,7 +1,8 @@
 import React from 'react';
 import { List, ListItem, ListItemText } from '@material-ui/core';
+import { InputData } from '../Props';
 
-export const saySentence = (item) => {
+export const saySentence = (item: InputData): void => {
     const { sentence } = item;
     try {
         const synth = window.speechSynthesis;
@@ -12,7 +13,11 @@ export const saySentence = (item) => {
     }
 };
 
-export const SentenceList = (props) => {
+interface SentenceListProps {
+    items?: InputData[];
+}
+
+export const SentenceList: React.FC<SentenceListProps> = (props) => {
     return (
         <List>
             {props.items &&

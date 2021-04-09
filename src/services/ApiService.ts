@@ -9,12 +9,12 @@ const API_HOST = 'linguatools-sentence-generating.p.rapidapi.com';
 const cache = new Map();
 
 interface ApiResponse {
-  result: string;
-  sentence: string;
+    result: string;
+    sentence: string;
 }
 
 export class ApiService {
-    static getCache():Map<string, ApiResponse> {
+    static getCache(): Map<string, ApiResponse> {
         return cache;
     }
     /**
@@ -34,7 +34,7 @@ export class ApiService {
     /**
      * Handle making a request to generate a new sentence
      */
-    static async getSentence(props: InputData): Promise<ApiResponse>{
+    static async getSentence(props: InputData): Promise<ApiResponse> {
         const { type } = props;
         const apiHeaders = new Headers();
         apiHeaders.append('x-rapidapi-key', API_KEY);

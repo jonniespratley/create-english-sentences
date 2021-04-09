@@ -1,3 +1,3 @@
-export * from "./InputForm";
-export * from "./SentenceOutput";
-export * from "./SentenceList";
+export * from './InputForm';
+export * from './SentenceOutput';
+export * from './SentenceList';

@@ -14,7 +14,7 @@ interface SentenceOutputProps {
  * @returns
  */
 export const SentenceOutput: React.FC<SentenceOutputProps> = ({ params }) => {
-    const [sentence, setSentence] = React.useState();
+    const [sentence, setSentence] = React.useState<string | null>(null);
     React.useEffect(() => {
         async function fetchData() {
             const res = await ApiService.getSentence(params);
