@@ -2,7 +2,9 @@
 
 This app is aimed to help people learn English by forming sentances.
 
-You can view of this application running [here](https://tcnpe.csb.app/)
+You can view of this application running [here](https://jonniespratley.github.io/create-english-sentences/)
+
+![Input Form](public/images/preview.png)
 
 ## Getting Started
 

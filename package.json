@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
+  "homepage": "http://jonniespratley.github.io/create-english-sentences",
   "main": "src/index.tsx",
   "dependencies": {
     "@material-ui/core": "4.11.3",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@material-ui/styles": "4.11.3",
-    "corpora-project": "^0.2.0",
-    "got": "^11.8.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-scripts": "4.0.1",
@@ -19,13 +18,16 @@
     "@types/jest": "^26.0.22",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
+    "gh-pages": "^3.1.0",
     "typescript": "4.1.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": [
     ">0.2%",
