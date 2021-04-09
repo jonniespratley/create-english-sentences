@@ -1,4 +1,3 @@
-import { actionVerbs } from "./sentenceData";
 import verbsData from "./verbs.json";
 import nounsData from "./nouns.json";
 

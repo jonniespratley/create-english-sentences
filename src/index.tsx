@@ -3,7 +3,6 @@ import { render } from "react-dom";
 
 import { App } from "./App";
 import { darkTheme } from "./Theme";
-import "./styles.css";
 
 function AppRoot() {
   return (
