@@ -39,7 +39,7 @@ export class ApiService {
       ["tense", tense],
       ["object", object]
     ]);
-    const url = `${API_URL}?${searchParams.toString().toLowerCase()}`;
+    const url = `${API_URL}?${searchParams.toString()}`;
     return ApiService.request(url, { headers: apiHeaders });
   }
 }

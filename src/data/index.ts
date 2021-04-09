@@ -16,7 +16,7 @@ export function getVerbs() {
 }
 
 export function getObjects() {
-  return ["Bear", "TV", "Toolbox", "Bed"].sort();
+  return ["Building", "TV", "Computer", "Fish", "Diamond", "Bathtub", "Sink", "Carrots"].sort();
 }
 
 export const sentenceTypes = [
