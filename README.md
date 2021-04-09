@@ -1,6 +1,15 @@
-# learn-english
+# create-enlish-sentences
 
 This app is aimed to help people learn English by forming sentances.
+
+## Getting Started
+
+To run this application after cloning the repo do the following:
+
+```sh
+$ yarn install
+$ yarn start
+```
 
 
 ## Technology Stack

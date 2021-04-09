@@ -1,7 +1,8 @@
 import { ThemeProvider, CssBaseline } from "@material-ui/core";
 import { render } from "react-dom";
 
-import { App, darkTheme } from "./app";
+import { App } from "./App";
+import { darkTheme } from "./Theme";
 import "./styles.css";
 
 function AppRoot() {

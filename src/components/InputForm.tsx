@@ -19,9 +19,14 @@ function getNouns() {
   const { nouns } = nounsData;
   return nouns;
 }
+
 function getVerbs() {
   const { verbs } = verbsData;
   return verbs.map((v) => v.present);
+}
+
+function getObjects() {
+  return ["Bear", "TV", "Toolbox", "Bed"].sort();
 }
 
 const sentenceTypes = [
@@ -37,6 +42,10 @@ const tenses = [
 ];
 
 const formLabels = {
+  type: {
+    label: "Type of sentence",
+    help: "The type of sentence structure",
+  },
   noun: {
     label: "Give a subject",
     help: "A noun. (👶🏻, 👮🏽‍♀️, 👩, 🏖)",
@@ -47,29 +56,34 @@ const formLabels = {
   },
   tense: {
     label: "Give a tense",
-    help: "A specific time.",
+    help: "A time. (⏱, 🕰) ",
   },
   object: {
     label: "Give a object",
-    help: "A thing. (Ball, Car, Building)",
+    help: "A thing. (🧸, 📺, 🧰, 🛏)",
   },
+  submit: {
+    label: 'Create'
+  }
 };
 
-interface InputData {
+export interface InputData {
+  id: string;
   subject?: string;
+  type?: string;
   verb?: string;
   noun?: string;
   object?: string;
   tense?: string;
 }
 
-interface InputFormProps {
-  onSubmit?: (data: any) => void;
-  data?: InputData;
+export interface InputFormProps {
+  onSubmit?: (data: InputData) => void;
 }
 
 export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
-  const [subject, setSubject] = React.useState(null);
+  const [subject, setSubject] = React.useState("");
+  const [type, setType] = React.useState("yesno");
   const [tense, setTense] = React.useState("");
   const [noun, setNoun] = React.useState("");
   const [verb, setVerb] = React.useState("");
@@ -77,117 +91,135 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
 
   let formData: InputData;
 
+  const smSize = 3;
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    formData = { verb, tense, ...{ subject: noun } };
-
+    formData = {
+      id: `${Date.now()}`,
+      verb,
+      type,
+      tense,
+      object,
+      subject,
+    };
     if (onSubmit) {
       onSubmit(formData);
     }
   };
 
-  const smSize = 3;
   return (
-    <Box my={2} p={2}>
-      <Typography variant="h4">English Sentences</Typography>
-      <p>Use the form below to construct a sentence.</p>
-      <br />
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={4}>
-          <Grid item xs={12}>
-            <TextField
-              id="input1"
-              label="Sentence type"
-              variant="outlined"
-              fullWidth
-              select
-            >
-              {sentenceTypes.map((t) => (
-                <MenuItem key={t.value} value={t.value}>
-                  {t.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid>
-          <Grid item sm={smSize} xs={12}>
-            <Autocomplete
-              id="noun"
-              freeSolo
-              value={noun}
-              onInputChange={(e, val) => setNoun(val)}
-              options={getNouns()}
-              getOptionLabel={(option) => option}
-              fullWidth
-              renderInput={(params) => (
-                <TextField
-                  label={formLabels.noun.label}
-                  helperText={formLabels.noun.help}
-                  variant="outlined"
-                  {...params}
-                />
-              )}
-            />
-          </Grid>
-          <Grid item sm={smSize} xs={12}>
-            <Autocomplete
-              id="verb"
-              freeSolo
-              value={verb}
-              options={getVerbs()}
-              getOptionLabel={(option) => option}
-              onInputChange={(e, val) => setVerb(val)}
-              fullWidth
-              renderInput={(params) => (
-                <TextField
-                  label={formLabels.verb.label}
-                  helperText={formLabels.verb.help}
-                  variant="outlined"
-                  {...params}
-                />
-              )}
-            />
-          </Grid>
-          <Grid item sm={smSize} xs={12}>
-            <TextField
-              id="tense"
-              value={tense}
-              defaultValue="past"
-              onChange={(e) => setTense(e.target.value)}
-              label={formLabels.tense.label}
-              helperText={formLabels.tense.help}
-              select
-              fullWidth
-              variant="outlined"
-            >
-              {tenses.map((t) => (
-                <MenuItem key={t.value} value={t.value}>
-                  {t.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid>
-
-          <Grid item sm={smSize} xs={12}>
-            <TextField
-              id="object"
-              label={formLabels.object.label}
-              helperText={formLabels.object.help}
-              value={object}
-              fullWidth
-              variant="outlined"
-              onChange={(e) => setObject(e.target.value)}
-            />
-          </Grid>
-
-          <Grid item xs={12}>
-            <Button variant="outlined" type="submit">
-              {" "}
-              Generate Sentence
-            </Button>
-          </Grid>
+    <form onSubmit={handleSubmit}>
+      <Grid container spacing={4}>
+        {/* Sentence Type */}
+        <Grid item xs={12}>
+          <TextField
+            id="type"
+            label={formLabels.type.label}
+            helperText={formLabels.type.help}
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+            variant="outlined"
+            fullWidth
+            select
+          >
+            {sentenceTypes.map((t) => (
+              <MenuItem key={t.value} value={t.value}>
+                {t.label}
+              </MenuItem>
+            ))}
+          </TextField>
         </Grid>
-      </form>
-    </Box>
+
+        {/* Sentence Subject / Noun */}
+        <Grid item sm={smSize} xs={12}>
+          <Autocomplete
+            id="noun"
+            freeSolo
+            value={noun}
+            onInputChange={(e, val) => setSubject(val)}
+            options={getNouns()}
+            getOptionLabel={(option) => option}
+            fullWidth
+            renderInput={(params) => (
+              <TextField
+                label={formLabels.noun.label}
+                helperText={formLabels.noun.help}
+                variant="outlined"
+                {...params}
+              />
+            )}
+          />
+        </Grid>
+        {/* Sentence Verb */}
+        <Grid item sm={smSize} xs={12}>
+          <Autocomplete
+            id="verb"
+            freeSolo
+            value={verb}
+            options={getVerbs()}
+            getOptionLabel={(option) => option}
+            onInputChange={(e, val) => setVerb(val)}
+            fullWidth
+            renderInput={(params) => (
+              <TextField
+                label={formLabels.verb.label}
+                helperText={formLabels.verb.help}
+                variant="outlined"
+                {...params}
+              />
+            )}
+          />
+        </Grid>
+
+        {/* Sentence Object */}
+        <Grid item sm={smSize} xs={12}>
+        <Autocomplete
+            id="object"
+            freeSolo
+            value={object}
+            options={getObjects()}
+            getOptionLabel={(option) => option}
+            onInputChange={(e, val) => setObject(val)}
+            fullWidth
+            renderInput={(params) => (
+              <TextField
+                label={formLabels.object.label}
+                helperText={formLabels.object.help}
+                variant="outlined"
+                {...params}
+              />
+            )}
+          />
+         
+        </Grid>
+        {/* Sentence Tense */}
+        <Grid item sm={smSize} xs={12}>
+          <TextField
+            id="tense"
+            value={tense}
+            defaultValue="past"
+            onChange={(e) => setTense(e.target.value)}
+            label={formLabels.tense.label}
+            helperText={formLabels.tense.help}
+            select
+            fullWidth
+            required
+            variant="outlined"
+          >
+            {tenses.map((t) => (
+              <MenuItem key={t.value} value={t.value}>
+                {t.label}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Button variant="outlined" type="submit">
+            {formLabels.submit.label}
+          </Button>
+        </Grid>
+      </Grid>
+    </form>
   );
 };

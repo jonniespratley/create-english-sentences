@@ -8,26 +8,21 @@ interface OutputFormProps {
   params?: any;
 }
 
-let api = new ApiService();
-
 export const OutputForm: React.FC<OutputFormProps> = ({ params }) => {
   const [sentence, setSentence] = React.useState();
-
   React.useEffect(() => {
     async function fetchData() {
-      let res = await api.getSentence(params);
+      let res = await ApiService.getSentence(params);
       setSentence(res.sentence);
     }
     fetchData();
   }, [params]);
 
-  return (
-    <Paper>
-      <Box p={6}>
-        <Typography variant="h3" component="p">
+  return (    
+        <React.Suspense fallback={<p>Loading...</p>}>
+          <Typography variant="body1">
           {sentence}
         </Typography>
-      </Box>
-    </Paper>
+        </React.Suspense>
   );
 };
