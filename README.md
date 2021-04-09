@@ -13,6 +13,21 @@ $ yarn install
 $ yarn start
 ```
 
+## Requirements
+
+Simple web application that allows users learning English to form proper sentences.
+
+ - [x] Use Linguatools free testing API to generate sentences
+
+Allow users to:
+
+- [x] Choose a sentence type
+- [x] Give a noun as a subject
+- [x] Give a verb
+- [x] Give a noun as an object
+- [x] Choose a verb tense
+
+
 ## Technology Stack
 
 The following is the technology used for this application.
@@ -88,8 +103,6 @@ In this case a simple sentence is captured.
 ![Input Form](public/images/form.png)
 
 Below the form is the list of sentences that were generated, if you press on a item it will speak that sentence to you.
-
-
 
 
 ## Conclusion

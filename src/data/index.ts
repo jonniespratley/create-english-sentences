@@ -49,7 +49,7 @@ export const formLabels = {
   },
   object: {
     label: "Give a object",
-    help: "A thing. (🧸, 📺, 🧰, 🛏)",
+    help: "A noun. (🧸, 📺, 🧰, 🛏)",
   },
   submit: {
     label: 'Create'

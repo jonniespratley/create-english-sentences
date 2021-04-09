@@ -44,7 +44,9 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
 
   let formData: InputData;
 
-  const smSize = 3;
+  const smSize = 6;
+  const mdSize = 3;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     formData = {
@@ -84,7 +86,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
         </Grid>
 
         {/* Sentence Subject / Noun */}
-        <Grid item sm={smSize} xs={12}>
+        <Grid item sm={smSize} md={mdSize} xs={12}>
           <Autocomplete
             id="noun"
             freeSolo
@@ -104,7 +106,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
           />
         </Grid>
         {/* Sentence Verb */}
-        <Grid item sm={smSize} xs={12}>
+        <Grid item sm={smSize} md={mdSize} xs={12}>
           <Autocomplete
             id="verb"
             freeSolo
@@ -125,7 +127,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
         </Grid>
 
         {/* Sentence Object */}
-        <Grid item sm={smSize} xs={12}>
+        <Grid item sm={smSize} md={mdSize} xs={12}>
           <Autocomplete
             id="object"
             freeSolo
@@ -145,7 +147,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
           />
         </Grid>
         {/* Sentence Tense */}
-        <Grid item sm={smSize} xs={12}>
+        <Grid item sm={smSize} md={mdSize} xs={12}>
           <TextField
             id="tense"
             value={tense}
