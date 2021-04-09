@@ -76,7 +76,10 @@ The components logic is broken down into the following:
 2. `SentenceOuput` - This is a simple component that uses Hooks to handle fetching the complete sentence from the API and rendering it to the display.
 3. `ApiService` - This is a simple service class that handles making a API request then caching, then returns the results.
 
-### Data
+
+## User Input
+
+The following is an image of the sentence creation form.
 
 For assisting users in completing the form I gathered data from around the internet about the most commonly used of the following:
 
@@ -84,5 +87,13 @@ For assisting users in completing the form I gathered data from around the inter
 - verbs
 - objects
 
-This data is loaded and populates the autocomplete inputs in the UI.
+This data is populates the auto-complete inputs in the UI.
+
+![Input Form](public/images/form.png)
+
+
+
+## Conclusion
+
+This objective was can be very challenging when you think about the design aspect of it. In a sense the application should feel very approachable and even like an elementry school course online. When you start breaking down the different parts of a sentence and thinking about it in terms of a user entering data my initial thought was to use icons and visually allow a user to construct a sentence.
 
