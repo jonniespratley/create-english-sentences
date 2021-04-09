@@ -45,11 +45,11 @@ const formLabels = {
   verb: {
     label: "Give a verb",
     help:
-      "A word used to describe an action, state or occurrence. (throw, catch, run, walk)",
+      "An action, state. (🏊🏼‍♂️ 🚣🏽 🚴🏽‍♀️ 🚗  🚀)",
   },
   tense: {
     label: "Give a tense",
-    help: "A thing that occurred at a specific time. (past, present, future)",
+    help: "A thing that occurred at a specific time. (past, present, future) 🌝 🌤 🌑",
   },
 };
 
