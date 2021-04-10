@@ -85,6 +85,7 @@ A complex sentence can be broken down into one clause with a relative clause.
 
 ## Application Design
 
+The simple sentence type is what was focused on due to time constraints.
 The application was broken down into the following layers.
 
 ### User Interface Layer
@@ -92,20 +93,29 @@ The application was broken down into the following layers.
 1. `InputForm` - This is a simple form for users to input a subject, noun, and tense.
 2. `SentenceOuput` - This is a simple component that uses Hooks to handle fetching the complete sentence from the API and rendering it to the display.
 
+  > Note: This is not used in this demo, see pros & cons.
+
 ### Data Access Layer
 
 1. `ApiService` - This is a simple service class that handles making a API request then caching, then returns the results.
 
 ## User Interface
 
-The user is presented with a form to input or select a option that corresponds to the part of the sentence.
+Since it takes two things to make a sentence (subject, verb) I wanted to make the inputs be grouped as two. This can enable extension of complex and compound sentences as two more groups (subject, verb) could make up different sencences.
 
-In this case a simple sentence is captured.
+In this case a simple sentence is captured:
 
 ![Input Form](public/images/form.png)
 
 Below the form is the list of sentences that were generated, if you press on a item it will speak that sentence to you.
 
+## Pros & Cons
+
+To follow up on the design trade offs with the UI.
+
+- Data fetching - This could be done in the react component during the render. But it was moved to the application layer for usablity.
+- Form inputs - This could have been something easier for a user to input data into. Such as cards or big icons.
+- Sentence Output - This was going to be big letters to show the sentence, but was moved to a smaller list with history.
 
 ## Conclusion
 
